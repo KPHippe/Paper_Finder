@@ -15,7 +15,7 @@ class ArXiv:
         if type(key_terms) is str:
             keywords = json.load(key_terms)
 
-        #TODO remove this when done testing
+        #TODO: remove autopulation of keywords when done testing
         self.key_terms = ['Neural']
         self._scrape()
         self._find_relevant_articles()
