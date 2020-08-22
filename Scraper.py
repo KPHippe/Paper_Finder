@@ -46,7 +46,7 @@ class ArXiv:
             url = data_dictionary['url']
             for key_term in self.key_terms:
                 #we are looking for this pattern anywhere in this string
-                #TODO update to regex
+                #TODO: update to regex
                 if key_term.lower() in title.lower():
                     if article_hash not in self.selected_articles.keys():
                         self.selected_articles[article_hash] = {'title': title, 'url': url}
