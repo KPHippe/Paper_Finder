@@ -1,3 +1,9 @@
 .ipynb_checkpoints/
 
 *.ipynb
+
+email_example.py
+
+*.json
+
+*.txt
