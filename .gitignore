@@ -7,3 +7,5 @@ email_example.py
 *.json
 
 *.txt
+
+__pychache__/
