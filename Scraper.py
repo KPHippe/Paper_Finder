@@ -6,17 +6,14 @@ from bs4 import BeautifulSoup
 
 class ArXiv:
     url = 'https://arxiv.org/list/cs/new'
-    def __init__(self, key_terms = None):
+    config_path = './.config/scraper_config.json'
+    def __init__(self):
         self.all_articles = {}
         self.selected_articles = {}
+        self.key_terms = json.load(open(self.config_path))['ArXiv']
 
-        if type(key_terms) is list:
-            self.key_terms = key_terms
-        if type(key_terms) is str:
-            keywords = json.load(key_terms)
+        self.selected_articles['keywords'] = self.key_terms
 
-        #TODO: remove autopulation of keywords when done testing
-        self.key_terms = ['Neural']
         self._scrape()
         self._find_relevant_articles()
 
@@ -31,7 +28,7 @@ class ArXiv:
             for dt_item, dd_item in zip(dlitem.find_all('dt'), dlitem.find_all('dd')):
                 #^\[.+\]$ matches any string with a "[" at the beginning, one or more characters, and a "]" at the end
                 hash_num = int(json.loads((dt_item.find('a', text=re.compile("^\[.+\]$")).text))[0])
-                title = (dd_item.find('div', class_='list-title mathjax').text.split('Title: ')[1]).strip()
+                title = (dd_item.find('div', class_='list-title mathjax').text.split('Title: ')[1]).strip().replace("  ", ' ')
                 try:
                     #some articles do not have a PDF link, we explude these articles
                     url = 'https://arxiv.org' + (dt_item.find('a', title="Download PDF", href=True)['href'])
