@@ -10,6 +10,6 @@ you with the titles and links with downloads.
 
 - [x] ArXiv scraper
 - [ ] BioarXiv scraper
-- [ ] email functionality
+- [X] email functionality
 - [ ] cron job support
-- [ ] setup/install script
+- [X] setup/install script
