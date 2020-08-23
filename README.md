@@ -9,6 +9,7 @@ you with the titles and links with downloads.
 ### Requirments
 
 - beautifulsoup4=4.9.1
+- requests=2.24.0
 
 ### TODO
 
