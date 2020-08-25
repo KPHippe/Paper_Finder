@@ -9,3 +9,5 @@ email_example.py
 *.txt
 
 *__pychache__/
+
+*.sh
