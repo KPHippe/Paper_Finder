@@ -25,7 +25,7 @@ In order to have email functionality for this product, you need to set up your o
     - Copy password that is generated, this is the password that you will use in the configuration when setting sender password.
 
 
-#### Cron instructions
+### Cron instructions
 This will allow you to run this script automatically and get emails without having to run this script manually
 ###### (Linux)
 1. Create a conda environment with python 3.7 and the requirements stated above
