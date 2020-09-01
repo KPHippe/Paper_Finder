@@ -5,9 +5,16 @@ import requests
 from bs4 import BeautifulSoup
 
 class ArXiv:
+    '''
+    This class scrapes the new CS articles from ArXiv
+    '''
     url = 'https://arxiv.org/list/cs/new'
     config_path = './.config/scraper_config.json'
     def __init__(self):
+        '''
+        Upon initialization, we load the search words and also scrape
+        ArXiv.
+        '''
         self.all_articles = {}
         self.selected_articles = {}
         self.key_terms = json.load(open(self.config_path))['ArXiv']
@@ -19,6 +26,19 @@ class ArXiv:
 
 
     def _scrape(self):
+        '''
+        This method is responsible for scraping ArXiv and loading the relevant
+        articles into the dictionary field.
+
+        Parameters:
+        ----------
+        None: This method only needs its instance variables
+
+        Returns:
+        ---------
+        None: This method just sets values to a field variable
+
+        '''
         arxiv_page = requests.get(self.url)
         arxiv_page.encoding = 'ISO-885901'
         soup = BeautifulSoup(arxiv_page.text, 'html.parser')
@@ -38,6 +58,15 @@ class ArXiv:
 
 
     def _find_relevant_articles(self):
+        '''
+        This method searches the relevant articles for keywords that come from the
+        JSON config
+
+        There are no parameters or returns, it sets field variables
+
+
+        TODO: use REGEX or a more powerful pattern matcher to find patterns
+        '''
         for article_hash, data_dictionary in self.all_articles.items():
             title = data_dictionary['title']
             url = data_dictionary['url']
@@ -50,6 +79,9 @@ class ArXiv:
                         continue
 
     def get_selections(self):
+        '''
+        Getter to see the selected articles
+        '''
         return self.selected_articles
 
 if __name__ == '__main__':

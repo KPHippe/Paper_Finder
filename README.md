@@ -24,10 +24,37 @@ In order to have email functionality for this product, you need to set up your o
     - In 'select app' drop down, select 'custom' and in form give it a unique name
     - Copy password that is generated, this is the password that you will use in the configuration when setting sender password.
 
+
+#### Cron instructions
+This will allow you to run this script automatically and get emails without having to run this script manually
+###### (Linux)
+1. Create a conda environment with python 3.7 and the requirements stated above
+2. Activate conda environment `conda activate env_name`
+3. Get python path: `which python`. Copy this, it will be relevant in next step
+4. Create bash file with contents like this:
+
+```bash
+#!/bin/sh
+
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin
+
+path/from/which_python/command /path/to/Paper_Finder.py
+
+```
+
+1. `crontab -e`
+2. Paste a command similar to:
+
+``` bash
+0 6 * * * cd /path/to/Paper_Finder_Folder/ && /path/to/Paper_Finder.sh
+```
+
+This command will run Paper_Finder at 6am every morning
+
 ### TODO
 
 - [x] ArXiv scraper
 - [ ] BioarXiv scraper
 - [X] email functionality
-- [ ] cron job support
+- [X] cron job support
 - [X] setup/install script

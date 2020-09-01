@@ -7,6 +7,16 @@ from os.path import isfile
 CONFIG_PATH = './.config/'
 
 def setup_email():
+    '''
+    This is the setup routine for the email part of the script
+    The end goal of this method is to establish a JSON file for the email to use.
+
+    Requirements:
+    ---------------
+    - GMail account with low security apps access and a python password (directions in README)
+    - list of recipients
+
+    '''
     print('Email setup, fields to setup: sender email, sender password, reciepeints list')
     if isfile(f"{CONFIG_PATH}email_config.json"):
         delete = input("\nWe detect an email config present, would you like to delete the config and restart from scrath? [y/n]\n>>>")
@@ -76,6 +86,14 @@ def setup_email():
     print('Email configuration set')
 
 def setup_scraper():
+    '''
+    This portion of the setup creates the JSON file that allows the scraper
+    to filter articles based on keywords.
+
+    Result is a private json file that are the basis for filtering articles in ArXiv
+    I will be adding more sites soon
+    
+    '''
     print('Scraper setup, fields to setup: ArXiv keywords, as more sites get added, more fields will be present')
     if isfile(f"{CONFIG_PATH}scraper_config.json"):
         delete = input("We detect an scraper config present, would you like to delete the config and restart from scrath? [y/n]\n>>>")
