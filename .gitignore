@@ -11,3 +11,5 @@ email_example.py
 *__pychache__/
 
 *.sh
+
+.DS_Store
